@@ -9,28 +9,74 @@ import Swiper from 'swiper';
 export class SwiperSliderComponent {
   @Input() position: any;
 
-  ngOnInit() {
-    debugger
-    const mySwiper = new Swiper('.swiper', {
-      // Optional parameters
-      direction: this.position,
-      // loop: true,
+  slideConfig = { "slidesToShow": 1, "slidesToScroll": 1, infinite: false, vertical: false, arrows: true, asNavFor: '.vertical-slider' };
 
-      // If we need pagination
-      // pagination: {
-      //   el: '.swiper-pagination',
-      // },
+  slideConfig2 = { "slidesToShow": 4, "slidesToScroll": 1, infinite: false, vertical: true, verticalSwiping: true, arrows: false, asNavFor: '.horizontal-slider' };
 
-      // Navigation arrows
-      // navigation: {
-      //   nextEl: '.swiper-button-next',
-      //   prevEl: '.swiper-button-prev',
-      // },
+  slides = [
+    { img: "assets/images/product-detail-1.023bc49d.jpg" },
+    { img: "assets/images/product-detail-2.62056b28.jpg" },
+    { img: "assets/images/product-detail-3.4edd674c.jpg" },
+    { img: "assets/images/product-detail-3.4edd674c.jpg" },
+    { img: "assets/images/product-detail-3.4edd674c.jpg" },
+    { img: "assets/images/product-detail-3.4edd674c.jpg" },
+    { img: "assets/images/product-detail-3.4edd674c.jpg" },
+    { img: "assets/images/product-detail-3.4edd674c.jpg" },
+    { img: "assets/images/product-detail-3.4edd674c.jpg" },
+    { img: "assets/images/product-detail-3.4edd674c.jpg" },
+    { img: "assets/images/product-detail-3.4edd674c.jpg" },
+    { img: "assets/images/product-detail-3.4edd674c.jpg" },
+    { img: "assets/images/product-detail-3.4edd674c.jpg" },
+    { img: "assets/images/product-detail-3.4edd674c.jpg" },
+    { img: "assets/images/product-detail-3.4edd674c.jpg" },
+    { img: "assets/images/product-detail-4.072fd9d4.jpg" }
+  ];
+  // ngOnInit() {
+  //   debugger
+  //   // if (this.position == 'vertical') {
+  //   const mySwiper = new Swiper('.swiper', {
+  //     // Optional parameters
+  //     direction: 'vertical',
+  //     // loop: true,
 
-      // And if we need scrollbar
-      // scrollbar: {
-      //   el: '.swiper-scrollbar',
-      // },
-    });
-  }
+  //     // If we need pagination
+  //     // pagination: {
+  //     //   el: '.swiper-pagination',
+  //     // },
+
+  //     // Navigation arrows
+  //     // navigation: {
+  //     //   nextEl: '.swiper-button-next',
+  //     //   prevEl: '.swiper-button-prev',
+  //     // },
+
+  //     // And if we need scrollbar
+  //     // scrollbar: {
+  //     //   el: '.swiper-scrollbar',
+  //     // },
+  //   });
+  //   // } else if (this.position == 'horizontal') {
+  //   const mySwiper2 = new Swiper('.swiper2', {
+  //     // Optional parameters
+  //     direction: 'horizontal',
+  //     // loop: true,
+
+  //     // If we need pagination
+  //     // pagination: {
+  //     //   el: '.swiper-pagination',
+  //     // },
+
+  //     // Navigation arrows
+  //     // navigation: {
+  //     //   nextEl: '.swiper-button-next',
+  //     //   prevEl: '.swiper-button-prev',
+  //     // },
+
+  //     // And if we need scrollbar
+  //     // scrollbar: {
+  //     //   el: '.swiper-scrollbar',
+  //     // },
+  //   });
+  //   // }
+  // }
 }

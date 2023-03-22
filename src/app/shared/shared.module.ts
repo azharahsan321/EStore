@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ProductCardComponent } from './Components/product-card/product-card.component';
 import { PaginationComponent } from './Components/pagination/pagination.component';
 import { SwiperSliderComponent } from './Components/swiper-slider/swiper-slider.component';
-
+import { SlickCarouselModule } from 'ngx-slick-carousel';
 
 
 @NgModule({
@@ -13,7 +13,8 @@ import { SwiperSliderComponent } from './Components/swiper-slider/swiper-slider.
     SwiperSliderComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    SlickCarouselModule
   ],
   exports: [
     ProductCardComponent,

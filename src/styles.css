@@ -262,7 +262,7 @@ sup {
 
 a {
     color: #dcb14a;
-    text-decoration: underline
+    text-decoration: none !important
 }
 
 a:hover {
@@ -13505,4 +13505,21 @@ a.text-hover-dark:hover {
 #style-switch h4,
 #style-switch .h4 {
     color: #495057
+}
+
+.slick-next {
+    right: 25px !important
+}
+
+.slick-next:before,
+.slick-prev:before {
+    color: gray !important;
+}
+
+.slick-prev {
+    left: 25px !important;
+}
+
+.slick-arrow {
+    z-index: 9999999 !important;
 }
