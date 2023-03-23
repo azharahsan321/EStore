@@ -5,7 +5,6 @@ import { PaginationComponent } from './Components/pagination/pagination.componen
 import { SwiperSliderComponent } from './Components/swiper-slider/swiper-slider.component';
 import { SlickCarouselModule } from 'ngx-slick-carousel';
 
-
 @NgModule({
   declarations: [
     ProductCardComponent,
@@ -14,11 +13,12 @@ import { SlickCarouselModule } from 'ngx-slick-carousel';
   ],
   imports: [
     CommonModule,
-    SlickCarouselModule
+    SlickCarouselModule,
   ],
   exports: [
     ProductCardComponent,
-    SwiperSliderComponent
+    SwiperSliderComponent,
+    PaginationComponent
   ]
 })
 export class SharedModule { }
