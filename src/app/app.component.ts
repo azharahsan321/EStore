@@ -14,7 +14,8 @@ export function getTypeaheadConfig(): TypeaheadConfig {
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  public role: string = 'auth';
+  public role: string = 'admin';
+  public title: string = 'angular';
   public asyncSelected?: string;
   public typeaheadLoading?: boolean;
   public typeaheadNoResults?: boolean;
@@ -100,5 +101,4 @@ export class AppComponent {
   typeaheadOnSelect(e: TypeaheadMatch): void {
     console.log('Selected value: ', e.value);
   }
-
 }

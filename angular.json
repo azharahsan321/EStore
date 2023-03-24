@@ -29,7 +29,6 @@
             ],
             "styles": [
               "src/styles.css",
-              "src/admin-styles.css",
               "node_modules/slick-carousel/slick/slick.scss",
               "node_modules/slick-carousel/slick/slick-theme.scss"
             ],
