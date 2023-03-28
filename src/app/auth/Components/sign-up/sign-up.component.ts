@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./sign-up.component.css']
 })
 export class SignUpComponent {
-
+  public role: string = 'admin';
 }

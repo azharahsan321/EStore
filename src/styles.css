@@ -8821,7 +8821,7 @@ fieldset:disabled .btn {
     border-radius: .25rem !important
 }
 
-.rounded-0 {
+/* .rounded-0 {
     border-radius: 0 !important
 }
 
@@ -8835,7 +8835,7 @@ fieldset:disabled .btn {
 
 .rounded-3 {
     border-radius: .3rem !important
-}
+} */
 
 .rounded-circle {
     border-radius: 50% !important
@@ -13687,4 +13687,8 @@ a.text-hover-dark:hover {
 
 .dash-left-menu .bg-dark a {
     color: white;
+}
+
+.bg-grey {
+    background: #ccc;
 }
