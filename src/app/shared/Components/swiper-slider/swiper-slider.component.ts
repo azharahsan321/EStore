@@ -1,5 +1,4 @@
 import { Component, Input } from '@angular/core';
-import Swiper from 'swiper';
 
 @Component({
   selector: 'app-swiper-slider',

@@ -1,0 +1,10 @@
+<div class="d-flex justify-content-between mb-3">
+    <h3>My Products</h3>
+    <button class="btn btn-dark"><a routerLink="new">Add Product</a></button>
+</div>
+<hr>
+<div class="row">
+    <div class="col-lg-2 col-sm-4" *ngFor="let num of [1,1,1,1,1,1,1,1,1,1,1,1]">
+        <app-product-card [from]="'adminMyProducts'"></app-product-card>
+    </div>
+</div>

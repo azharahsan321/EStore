@@ -6,18 +6,20 @@ import { CartComponent } from './Components/cart/cart.component';
 import { FavouritesComponent } from './Components/favourites/favourites.component';
 import { SharedModule } from '../shared/shared.module';
 import { CheckoutComponent } from './Components/checkout/checkout.component';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
   declarations: [
     CartComponent,
     FavouritesComponent,
-    CheckoutComponent
+    CheckoutComponent,
   ],
   imports: [
     CommonModule,
     UserRoutingModule,
-    SharedModule
-  ]
+    SharedModule,
+    FormsModule
+  ],
 })
 export class UserModule { }

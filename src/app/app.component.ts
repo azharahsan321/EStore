@@ -1,4 +1,14 @@
-import { Component } from '@angular/core';
+
+import { Component, ViewChild } from '@angular/core';
+import { Observable, of } from 'rxjs';
+import { TypeaheadMatch } from 'ngx-bootstrap/typeahead';
+import { mergeMap, delay } from 'rxjs/operators';
+import { TypeaheadConfig } from 'ngx-bootstrap/typeahead';
+import { compileNgModule } from '@angular/compiler';
+
+export function getTypeaheadConfig(): TypeaheadConfig {
+  return Object.assign(new TypeaheadConfig(), { cancelRequestOnFocusLost: true });
+}
 
 @Component({
   selector: 'app-root',
@@ -6,5 +16,122 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'store_angular';
+  public role: string = 'auth';
+  public title: string = 'angular';
+  public asyncSelected?: string;
+  public typeaheadLoading?: boolean;
+  public typeaheadNoResults?: boolean;
+  public dataSource: Observable<any>;
+  public statesComplex: any = [
+    { id: 1, name: 'Alabama', region: 'South' },
+    { id: 2, name: 'Alaska', region: 'West' },
+    { id: 3, name: 'Arizona', region: 'West' },
+    { id: 4, name: 'Arkansas', region: 'South' },
+    { id: 5, name: 'California', region: 'West' },
+    { id: 6, name: 'Colorado', region: 'West' },
+    { id: 7, name: 'Connecticut', region: 'Northeast' },
+    { id: 8, name: 'Delaware', region: 'South' },
+    { id: 9, name: 'Florida', region: 'South' },
+    { id: 10, name: 'Georgia', region: 'South' },
+    { id: 11, name: 'Hawaii', region: 'West' },
+    { id: 12, name: 'Idaho', region: 'West' },
+    { id: 13, name: 'Illinois', region: 'Midwest' },
+    { id: 14, name: 'Indiana', region: 'Midwest' },
+    { id: 15, name: 'Iowa', region: 'Midwest' },
+    { id: 16, name: 'Kansas', region: 'Midwest' },
+    { id: 17, name: 'Kentucky', region: 'South' },
+    { id: 18, name: 'Louisiana', region: 'South' },
+    { id: 19, name: 'Maine', region: 'Northeast' },
+    { id: 21, name: 'Maryland', region: 'South' },
+    { id: 22, name: 'Massachusetts', region: 'Northeast' },
+    { id: 23, name: 'Michigan', region: 'Midwest' },
+    { id: 24, name: 'Minnesota', region: 'Midwest' },
+    { id: 25, name: 'Mississippi', region: 'South' },
+    { id: 26, name: 'Missouri', region: 'Midwest' },
+    { id: 27, name: 'Montana', region: 'West' },
+    { id: 28, name: 'Nebraska', region: 'Midwest' },
+    { id: 29, name: 'Nevada', region: 'West' },
+    { id: 30, name: 'New Hampshire', region: 'Northeast' },
+    { id: 31, name: 'New Jersey', region: 'Northeast' },
+    { id: 32, name: 'New Mexico', region: 'West' },
+    { id: 33, name: 'New York', region: 'Northeast' },
+    { id: 34, name: 'North Dakota', region: 'Midwest' },
+    { id: 35, name: 'North Carolina', region: 'South' },
+    { id: 36, name: 'Ohio', region: 'Midwest' },
+    { id: 37, name: 'Oklahoma', region: 'South' },
+    { id: 38, name: 'Oregon', region: 'West' },
+    { id: 39, name: 'Pennsylvania', region: 'Northeast' },
+    { id: 40, name: 'Rhode Island', region: 'Northeast' },
+    { id: 41, name: 'South Carolina', region: 'South' },
+    { id: 42, name: 'South Dakota', region: 'Midwest' },
+    { id: 43, name: 'Tennessee', region: 'South' },
+    { id: 44, name: 'Texas', region: 'South' },
+    { id: 45, name: 'Utah', region: 'West' },
+    { id: 46, name: 'Vermont', region: 'Northeast' },
+    { id: 47, name: 'Virginia', region: 'South' },
+    { id: 48, name: 'Washington', region: 'South' },
+    { id: 49, name: 'West Virginia', region: 'South' },
+    { id: 50, name: 'Wisconsin', region: 'Midwest' },
+    { id: 51, name: 'Wyoming', region: 'West' }
+  ];
+
+  constructor() {
+    this.dataSource = Observable.create((observer: any) => {
+      // Runs on every search
+      observer.next(this.asyncSelected);
+    })
+      .pipe(
+        mergeMap((token: string) => this.getStatesAsObservable(token)),
+        delay(1000)
+      );
+  }
+
+  getStatesAsObservable(token: string): Observable<any> {
+    const query = new RegExp(token, 'i');
+
+    return of(
+      this.statesComplex.filter((state: { id: number; name: string; region: string; }) => {
+        return query.test(state.name);
+      })
+    );
+  }
+
+  changeTypeaheadLoading(e: boolean): void {
+    this.typeaheadLoading = e;
+  }
+
+  typeaheadOnSelect(e: TypeaheadMatch): void {
+    console.log('Selected value: ', e.value);
+  }
+  @ViewChild('dashboardLink') dashboardLink: any;
+  @ViewChild('productsLink') productsLink: any;
+
+  changeActiveStatus(event: any) {
+    this.resetLinksActiveStatus();
+    event.target.parentNode.parentNode.classList.add('bg-dark');
+  }
+
+  resetLinksActiveStatus() {
+    if (this.role == 'admin') {
+      this.dashboardLink.nativeElement.classList.remove('bg-dark');
+      this.productsLink.nativeElement.classList.remove('bg-dark');
+    }
+  }
+
+  ngAfterViewInit() {
+    if (this.role == 'admin') {
+      let url = window.location.href;
+      this.resetLinksActiveStatus();
+      if (url.includes('/dashboard')) {
+        this.dashboardLink.nativeElement.classList.add('bg-dark');
+      } else if (url.includes('/product')) {
+        this.productsLink.nativeElement.classList.add('bg-dark');
+      }
+    }
+  }
+
+  setLinkToDashboard() {
+    this.resetLinksActiveStatus();
+    this.dashboardLink.nativeElement.classList.add('bg-dark');
+  }
 }
