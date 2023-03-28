@@ -1,8 +1,10 @@
-import { Component } from '@angular/core';
+
+import { Component, ViewChild } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { TypeaheadMatch } from 'ngx-bootstrap/typeahead';
 import { mergeMap, delay } from 'rxjs/operators';
 import { TypeaheadConfig } from 'ngx-bootstrap/typeahead';
+import { compileNgModule } from '@angular/compiler';
 
 export function getTypeaheadConfig(): TypeaheadConfig {
   return Object.assign(new TypeaheadConfig(), { cancelRequestOnFocusLost: true });
@@ -100,5 +102,36 @@ export class AppComponent {
 
   typeaheadOnSelect(e: TypeaheadMatch): void {
     console.log('Selected value: ', e.value);
+  }
+  @ViewChild('dashboardLink') dashboardLink: any;
+  @ViewChild('productsLink') productsLink: any;
+
+  changeActiveStatus(event: any) {
+    this.resetLinksActiveStatus();
+    event.target.parentNode.parentNode.classList.add('bg-dark');
+  }
+
+  resetLinksActiveStatus() {
+    if (this.role == 'admin') {
+      this.dashboardLink.nativeElement.classList.remove('bg-dark');
+      this.productsLink.nativeElement.classList.remove('bg-dark');
+    }
+  }
+
+  ngAfterViewInit() {
+    if (this.role == 'admin') {
+      let url = window.location.href;
+      this.resetLinksActiveStatus();
+      if (url.includes('/dashboard')) {
+        this.dashboardLink.nativeElement.classList.add('bg-dark');
+      } else if (url.includes('/product')) {
+        this.productsLink.nativeElement.classList.add('bg-dark');
+      }
+    }
+  }
+
+  setLinkToDashboard() {
+    this.resetLinksActiveStatus();
+    this.dashboardLink.nativeElement.classList.add('bg-dark');
   }
 }

@@ -262,7 +262,8 @@ sup {
 
 a {
     color: #dcb14a;
-    text-decoration: none !important
+    text-decoration: none !important;
+    cursor: pointer;
 }
 
 a:hover {
@@ -13678,4 +13679,12 @@ a.text-hover-dark:hover {
         height: auto;
         opacity: 1;
     }
+}
+
+.dash-left-menu a {
+    color: black;
+}
+
+.dash-left-menu .bg-dark a {
+    color: white;
 }
