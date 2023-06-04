@@ -10,12 +10,6 @@ export class DashboardComponent {
 
   constructor(private userService: UserServicesService) { }
 
-  ngOnInit() {
-    this.userService.test().subscribe(res => {
-      console.log(res)
-    })
-  }
-
   public nums: any = [1, 1, 1, 1, 1, 1, 1, 1];
 }
 

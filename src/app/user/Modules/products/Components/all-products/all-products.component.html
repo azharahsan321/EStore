@@ -130,8 +130,8 @@
                     </div>
                     <div class="row">
                         <!-- PRODUCT-->
-                        <div *ngFor="let num of nums" class="col-lg-4 col-sm-6">
-                            <app-product-card></app-product-card>
+                        <div *ngFor="let product of products" class="col-lg-4 col-sm-6">
+                            <app-product-card [product]="product"></app-product-card>
                         </div>
                     </div>
                     <!-- PAGINATION-->
