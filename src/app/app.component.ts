@@ -5,6 +5,7 @@ import { TypeaheadMatch } from 'ngx-bootstrap/typeahead';
 import { mergeMap, delay } from 'rxjs/operators';
 import { TypeaheadConfig } from 'ngx-bootstrap/typeahead';
 import { compileNgModule } from '@angular/compiler';
+import { GlobalService } from './Services/global.service';
 
 export function getTypeaheadConfig(): TypeaheadConfig {
   return Object.assign(new TypeaheadConfig(), { cancelRequestOnFocusLost: true });
@@ -75,7 +76,7 @@ export class AppComponent {
     { id: 51, name: 'Wyoming', region: 'West' }
   ];
 
-  constructor() {
+  constructor(private globalService: GlobalService) {
     this.dataSource = Observable.create((observer: any) => {
       // Runs on every search
       observer.next(this.asyncSelected);
@@ -128,6 +129,10 @@ export class AppComponent {
         this.productsLink.nativeElement.classList.add('bg-dark');
       }
     }
+    this.globalService.signup({}).subscribe(res => {
+      console.log(res);
+
+    })
   }
 
   setLinkToDashboard() {
