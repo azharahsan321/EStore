@@ -16,7 +16,7 @@ export function getTypeaheadConfig(): TypeaheadConfig {
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  public role: string = 'auth';
+  public role: string = 'user';
   public title: string = 'angular';
   public asyncSelected?: string;
   public typeaheadLoading?: boolean;

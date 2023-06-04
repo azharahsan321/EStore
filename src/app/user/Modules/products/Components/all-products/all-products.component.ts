@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ProductService } from '../../Services/product.service';
 
 @Component({
   selector: 'app-all-products',
@@ -7,4 +8,14 @@ import { Component } from '@angular/core';
 })
 export class AllProductsComponent {
   public nums: any = [1, 1, 1, 1, 1, 1, 1, 1];
+  public products: any;
+
+  constructor(private productService: ProductService) { }
+
+  ngOnInit() {
+    this.productService.fetchAllProducts().subscribe(res => {
+      this.products = res.data;
+    });
+  }
 }
+

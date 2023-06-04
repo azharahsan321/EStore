@@ -7,6 +7,7 @@ import { Component, Input } from '@angular/core';
 })
 export class ProductCardComponent {
   @Input() from: string = '';
+  @Input() product: any;
   public fromAdmin: boolean = false;
 
   ngOnInit() {
